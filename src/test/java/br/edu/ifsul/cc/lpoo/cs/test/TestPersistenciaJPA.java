@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  *
- * @author telmo
+ * @author Bruno
  */
 public class TestPersistenciaJPA {
     
