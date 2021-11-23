@@ -3,11 +3,15 @@ package br.edu.ifsul.cc.lpoo.cs.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,6 +45,21 @@ public class Jogador implements Serializable {
     @ManyToOne
     @JoinColumn(name = "endereco_id", nullable = false)
     private Endereco endereco;
+    
+    @OneToMany(mappedBy = "jogador")//mappedBy deve apontar para a referencia de jogador dentro de Compra.
+    private List<Compra> compras; //agregacao por composicao
+    
+    
+    @ManyToMany
+    @JoinTable(name = "tb_jogador_artefato", joinColumns = {@JoinColumn(name = "jogador_nickname")}, //agregacao, vai gerar uma tabela associativa.
+                                       inverseJoinColumns = {@JoinColumn(name = "artefato_id")})
+    private List<Artefato> artefatos;
+    
+    
+    @ManyToMany
+    @JoinTable(name = "tb_jogador_patente", joinColumns = {@JoinColumn(name = "jogador_nickname")}, //agregacao, vai gerar uma tabela associativa.
+                                       inverseJoinColumns = {@JoinColumn(name = "patente_id")})
+    private List<Patente> patentes;
     
     
     public Jogador(){
@@ -115,6 +134,62 @@ public class Jogador implements Serializable {
      */
     public void setData_ultimo_login(Calendar data_ultimo_login) {
         this.data_ultimo_login = data_ultimo_login;
+    }
+
+    /**
+     * @return the endereco
+     */
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    /**
+     * @param endereco the endereco to set
+     */
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    /**
+     * @return the compras
+     */
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    /**
+     * @param compras the compras to set
+     */
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
+    }
+
+    /**
+     * @return the artefatos
+     */
+    public List<Artefato> getArtefatos() {
+        return artefatos;
+    }
+
+    /**
+     * @param artefatos the artefatos to set
+     */
+    public void setArtefatos(List<Artefato> artefatos) {
+        this.artefatos = artefatos;
+    }
+
+    /**
+     * @return the patentes
+     */
+    public List<Patente> getPatentes() {
+        return patentes;
+    }
+
+    /**
+     * @param patentes the patentes to set
+     */
+    public void setPatentes(List<Patente> patentes) {
+        this.patentes = patentes;
     }
     
     
