@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author telmo
+ * @author bruno
  */
 
 @Entity

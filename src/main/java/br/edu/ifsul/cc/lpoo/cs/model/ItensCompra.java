@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author telmo
+ * @author bruno
  */
 
 @Entity

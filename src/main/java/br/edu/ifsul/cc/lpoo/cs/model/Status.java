@@ -5,7 +5,8 @@ package br.edu.ifsul.cc.lpoo.cs.model;
  *
  * @author bruno
  */
-public enum Calibre {
+public enum Status {
     
-    C03, C05, C08
+    SIM, NAO
+    
 }

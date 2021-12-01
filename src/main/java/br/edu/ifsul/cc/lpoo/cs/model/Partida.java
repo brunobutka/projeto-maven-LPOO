@@ -17,38 +17,40 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 /**
  *
  * @author bruno
  */
+
 @Entity
-@Table(name = "tb_compra")
-public class Compra implements Serializable {
+@Table(name = "tb_partida")
+public class Partida implements Serializable {
     
     @Id
-    @SequenceGenerator(name = "seq_compra", sequenceName = "seq_compra_id", allocationSize = 1)
-    @GeneratedValue(generator = "seq_compra", strategy = GenerationType.SEQUENCE)   
+    @SequenceGenerator(name = "seq_partida", sequenceName = "seq_partida_id", allocationSize = 1)
+    @GeneratedValue(generator = "seq_partida", strategy = GenerationType.SEQUENCE) 
     private Integer id;
-
+    
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar data;
+    private Calendar inicio;
     
-    @Column(precision = 2, nullable = true)
-    private Float total;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar fim;
     
     @ManyToOne
-    @JoinColumn(name = "jogador_nickname", nullable = false)
+    @JoinColumn(name = "jogador_id", nullable = false)
     private Jogador jogador;
+
+    @OneToMany(mappedBy = "partida")
+    private List<Round> rounds;
     
-    @OneToMany(mappedBy = "compra")//mappedBy deve apontar para a referencia de jogador dentro de Compra.
-    private List<ItensCompra> itens;//agregacao por composicao.
-    
-    public Compra(){
+    public Partida(){
         
     }
-
+    
+    
     /**
      * @return the id
      */
@@ -64,31 +66,31 @@ public class Compra implements Serializable {
     }
 
     /**
-     * @return the data
+     * @return the inicio
      */
-    public Calendar getData() {
-        return data;
+    public Calendar getInicio() {
+        return inicio;
     }
 
     /**
-     * @param data the data to set
+     * @param inicio the inicio to set
      */
-    public void setData(Calendar data) {
-        this.data = data;
+    public void setInicio(Calendar inicio) {
+        this.inicio = inicio;
     }
 
     /**
-     * @return the total
+     * @return the fim
      */
-    public Float getTotal() {
-        return total;
+    public Calendar getFim() {
+        return fim;
     }
 
     /**
-     * @param total the total to set
+     * @param fim the fim to set
      */
-    public void setTotal(Float total) {
-        this.total = total;
+    public void setFim(Calendar fim) {
+        this.fim = fim;
     }
 
     /**
@@ -106,20 +108,17 @@ public class Compra implements Serializable {
     }
 
     /**
-     * @return the itens
+     * @return the rounds
      */
-    public List<ItensCompra> getItens() {
-        return itens;
+    public List<Round> getRounds() {
+        return rounds;
     }
 
     /**
-     * @param itens the itens to set
+     * @param rounds the rounds to set
      */
-    public void setItens(List<ItensCompra> itens) {
-        this.itens = itens;
+    public void setRounds(List<Round> rounds) {
+        this.rounds = rounds;
     }
-    
-    
-
-    
+   
 }

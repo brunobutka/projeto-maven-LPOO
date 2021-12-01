@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author telmo
+ * @author bruno
  */
 @Entity
 @Table(name = "tb_artefato")
