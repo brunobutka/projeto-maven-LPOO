@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,6 +19,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_patente")
+@NamedQueries({      
+    @NamedQuery(name="Patente.list_order_by_id_asc",
+               query="SELECT p From Patente p order by p.id asc")
+})
 public class Patente implements Serializable{
     
     @Id
@@ -26,8 +32,7 @@ public class Patente implements Serializable{
     
     @Column(nullable = false, length = 200)
     private String nome;
-    
-    
+        
     @Column(nullable = true, length = 20)
     private String cor;
     

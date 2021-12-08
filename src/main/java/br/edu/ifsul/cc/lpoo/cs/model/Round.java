@@ -1,11 +1,9 @@
 
 package br.edu.ifsul.cc.lpoo.cs.model;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,11 +23,9 @@ import javax.persistence.TemporalType;
  *
  * @author bruno
  */
-
 @Entity
 @Table(name = "tb_round")
-@DiscriminatorValue("R")
-public class Round implements Serializable {
+public class Round {
     
     @Id
     @SequenceGenerator(name = "seq_round", sequenceName = "seq_round_id", allocationSize = 1)
@@ -43,7 +39,7 @@ public class Round implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar inicio;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar fim;
     
@@ -55,7 +51,8 @@ public class Round implements Serializable {
     @ManyToOne
     @JoinColumn(name = "partida_id", nullable = false)//associacao
     private Partida partida;
-    
+        
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Modo modo;
@@ -161,6 +158,7 @@ public class Round implements Serializable {
     public void setModo(Modo modo) {
         this.modo = modo;
     }
+    
     
     
 }

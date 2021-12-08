@@ -19,7 +19,6 @@ import javax.persistence.Table;
  */
 @Entity()
 @Table(name = "tb_resulado")
-@DiscriminatorValue("R")
 public class Resultado implements Serializable{
     
     @EmbeddedId

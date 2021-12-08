@@ -35,12 +35,12 @@ public class Partida implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar inicio;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar fim;
     
     @ManyToOne
-    @JoinColumn(name = "jogador_id", nullable = false)
+    @JoinColumn(name = "jogador_nickname", nullable = false)
     private Jogador jogador;
 
     @OneToMany(mappedBy = "partida")

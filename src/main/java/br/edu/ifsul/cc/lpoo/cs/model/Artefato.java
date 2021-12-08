@@ -16,10 +16,11 @@ import javax.persistence.Table;
 /**
  *
  * @author bruno
+ * @doc: https://www.devmedia.com.br/tipos-de-heranca-no-hibernate/28641
  */
 @Entity
 @Table(name = "tb_artefato")
-@Inheritance(strategy = InheritanceType.JOINED)//alterar a estratÃ©gia para JOINED
+@Inheritance(strategy = InheritanceType.JOINED)//alterar a estratÃ©gia.
 @DiscriminatorColumn(name = "tipo")
 public class Artefato implements Serializable {
     
